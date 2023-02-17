@@ -1,15 +1,17 @@
-import { createApp } from 'vue'
+import Vue from 'vue'
 import App from './App.vue'
-import router from './router'
-import vuetify from './plugins/vuetify'
-import { loadFonts } from './plugins/webfontloader'
+import 'material-design-icons-iconfont/dist/material-design-icons.css'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
+import vuetify from './plugins/vuetify';
+import router from './router'
 
-loadFonts()
+Vue.use(VueAxios, axios)
 
-createApp(App)
-  .use(VueAxios, axios)
-  .use(router)
-  .use(vuetify)
-  .mount('#app')
+Vue.config.productionTip = false
+
+new Vue({
+  vuetify,
+  router,
+  render: h => h(App)
+}).$mount('#app')
